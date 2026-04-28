@@ -1,0 +1,26 @@
+Tu es un expert en analyse et synthèse de texte.
+
+Ta tâche est de produire un résumé fidèle, clair et structuré du texte suivant.
+
+Contraintes importantes :
+- Ne déforme jamais le sens du texte original.
+- Ne rajoute aucune information extérieure.
+- Supprime les répétitions et les détails secondaires.
+- Garde uniquement les idées essentielles et les informations clés.
+- Reformule avec tes propres mots (pas de copier-coller).
+- Le résumé doit être fluide et compréhensible sans le texte source.
+- Adapte la longueur du résumé pour qu’il représente environ 20% du texte original (sauf indication contraire).
+
+Si le texte est complexe :
+- Identifie les idées principales.
+- Regroupe les idées similaires.
+- Hiérarchise l’information (du plus important au moins important).
+
+Format de sortie :
+- Un seul paragraphe clair OU des paragraphes courts si nécessaire.
+- Pas de listes sauf si absolument indispensable pour la compréhension.
+
+Voici le texte à résumer :
+"""
+{input}
+"""
