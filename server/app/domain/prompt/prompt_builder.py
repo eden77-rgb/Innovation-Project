@@ -14,7 +14,10 @@ class PromptBuilder:
     }
 
     @staticmethod
-    def build(type: PromptType, text: str):
+    def build(type: PromptType, text: str) -> str:
+        if not text or not text.strip():
+            raise ValueError("Le texte ne peut pas être vide")
+
         file = PromptBuilder.PROMPTS[type]
 
         with open(PromptBuilder.TEMPLATE_DIR / file, "r", encoding="utf-8") as f:
