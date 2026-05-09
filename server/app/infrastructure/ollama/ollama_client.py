@@ -1,0 +1,25 @@
+from ollama import ChatResponse, Client
+
+
+class OllamaClient:
+    def __init__(self, model: str, host: str, temperature: float, timeout: int):
+        self.model = model
+        self.temperature = temperature
+        # self.timeout = timeout
+
+        self.client  = Client(host=host)
+
+
+    def generate(self, prompt: str, options: dict | None = None):
+        response : ChatResponse = self.client.chat(
+            model=self.model,
+            options={ "temperature": self.temperature, **(options or {}) },
+            messages=[
+                {
+                    'role': 'user',
+                    'content': prompt
+                }
+            ]
+        )
+
+        return response['message']['content']

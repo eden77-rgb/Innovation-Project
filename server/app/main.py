@@ -1,3 +1,4 @@
+""" TEST PROMPTBUILDER
 from domain import PromptBuilder, PromptType
 
 print(
@@ -37,3 +38,15 @@ prompt = PromptBuilder.build(
     "Je pense que ce produit est bien mais il est un peu cher et pas très pratique."
 )
 print(prompt, "\n\n")
+"""
+
+
+
+
+
+from infrastructure import OllamaClient
+
+print("Call 1")
+
+ollama = OllamaClient('llama3.2:1b', "localhost", 0.9, 10)
+print(ollama.generate("Why is the sky blue ?"))
