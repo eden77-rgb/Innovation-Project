@@ -1,4 +1,5 @@
 from ollama import ChatResponse, Client
+from collections.abc import Generator
 
 
 class OllamaClient:
@@ -10,7 +11,7 @@ class OllamaClient:
         self.client  = Client(host=host)
 
 
-    def generate(self, prompt: str, options: dict | None = None):
+    def generate(self, prompt: str, options: dict | None = None) -> str:
         response : ChatResponse = self.client.chat(
             model = self.model,
             options = { "temperature": self.temperature, **(options or {}) },
@@ -25,8 +26,8 @@ class OllamaClient:
         return response['message']['content']
 
 
-    def stream(self, prompt: str, options: dict | None = None):
-        stream = self.client.chat(
+    def stream(self, prompt: str, options: dict | None = None) -> Generator[str]:
+        stream : ChatResponse  = self.client.chat(
             model = self.model,
             options = { "temperature": self.temperature, **(options or {}) },
             messages = [
