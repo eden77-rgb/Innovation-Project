@@ -46,7 +46,13 @@ print(prompt, "\n\n")
 
 from infrastructure import OllamaClient
 
-print("Call 1")
-
 ollama = OllamaClient('llama3.2:1b', "localhost", 0.9, 10)
+
+
+print("generate()")
 print(ollama.generate("Why is the sky blue ?"))
+
+
+print("stream()")
+for token in ollama.stream("Why is the sky blue ?"):
+    print(token, end="", flush=True)

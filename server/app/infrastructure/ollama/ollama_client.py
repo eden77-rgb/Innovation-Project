@@ -12,9 +12,9 @@ class OllamaClient:
 
     def generate(self, prompt: str, options: dict | None = None):
         response : ChatResponse = self.client.chat(
-            model=self.model,
-            options={ "temperature": self.temperature, **(options or {}) },
-            messages=[
+            model = self.model,
+            options = { "temperature": self.temperature, **(options or {}) },
+            messages = [
                 {
                     'role': 'user',
                     'content': prompt
@@ -23,3 +23,20 @@ class OllamaClient:
         )
 
         return response['message']['content']
+
+
+    def stream(self, prompt: str, options: dict | None = None):
+        stream = self.client.chat(
+            model = self.model,
+            options = { "temperature": self.temperature, **(options or {}) },
+            messages = [
+                {
+                    'role': 'user',
+                    'content': prompt
+                }
+            ],
+            stream = True
+        )
+
+        for chunk in stream:
+            yield chunk['message']['content']
