@@ -9,7 +9,7 @@ Contraintes importantes :
 - Garde uniquement les idées essentielles et les informations clés.
 - Reformule avec tes propres mots (pas de copier-coller).
 - Le résumé doit être fluide et compréhensible sans le texte source.
-- Adapte la longueur du résumé pour qu’il représente environ 20% du texte original (sauf indication contraire).
+- Le résumé ne doit pas dépasser 400 caractères & doit tenir en maximum 4 à 6 phrases.
 
 Si le texte est complexe :
 - Identifie les idées principales.

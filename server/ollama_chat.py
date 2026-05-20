@@ -5,7 +5,7 @@ print("Lancement")
 start = time.time()
 
 response: ChatResponse = chat(
-    model='llama3.2:1b', 
+    model='qwen2.5:3b', 
     messages=[
         {'role': 'user', 'content': 'Why is the sky blue?'},
     ],
