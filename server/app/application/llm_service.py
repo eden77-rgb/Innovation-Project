@@ -30,4 +30,14 @@ class LLMService:
 
 
     def stream(self, prompt_type: PromptType, content: str) -> Generator[str]  :
-        pass
+        prompt = self.prompt_builder.build(
+            type = prompt_type,
+            text = content
+        )
+
+        options = self.options_policy.build_options(prompt_type)
+
+        yield from self.ollama_client.stream(
+            prompt = prompt, 
+            options = options.to_dict()
+        )
