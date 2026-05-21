@@ -1,4 +1,5 @@
 from .prompt_types import PromptType
+from exceptions import EmptyPromptError, InvalidPromptTypeError, PromptTemplateNotFoundError
 from pathlib import Path
 
 
@@ -15,12 +16,19 @@ class PromptBuilder:
 
     @staticmethod
     def build(type: PromptType, text: str) -> str:
-        if not text or not text.strip():
-            raise ValueError("Le texte ne peut pas être vide")
+        if not isinstance(text, str) or not text.strip():
+            raise EmptyPromptError("Prompt text cannot be empty")
 
+        if type not in PromptBuilder.PROMPTS:
+            raise InvalidPromptTypeError(f"Unsupported prompt type: {type}")
+    
         file = PromptBuilder.PROMPTS[type]
 
-        with open(PromptBuilder.TEMPLATE_DIR / file, "r", encoding="utf-8") as f:
-            template = f.read()
+        try:
+            with open(PromptBuilder.TEMPLATE_DIR / file, "r", encoding="utf-8") as f:
+                template = f.read()
+
+        except FileNotFoundError:
+            raise PromptTemplateNotFoundError(f"Template not found: {file}")
 
         return template.format(input=text)

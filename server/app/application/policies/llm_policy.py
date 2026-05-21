@@ -1,5 +1,6 @@
 from ..dto.ollama_options import OllamaOptions
 from domain import PromptType
+from domain.exceptions import InvalidPromptTypeError
 
 class LLMPolicy:
     def build_options(self, prompt_type: PromptType) -> OllamaOptions:
@@ -12,7 +13,7 @@ class LLMPolicy:
                     num_predict = 400,
                     repeat_penalty = 1.12
                 )
-            
+
             case PromptType.TRANSLATE:
                 return OllamaOptions(
                     temperature = 0.1,
@@ -20,7 +21,7 @@ class LLMPolicy:
                     num_predict = 1200,
                     repeat_penalty = 1.05
                 )
-            
+
             case PromptType.REWRITE:
                 return OllamaOptions(
                     temperature = 0.7,
@@ -28,6 +29,6 @@ class LLMPolicy:
                     num_predict = 800,
                     repeat_penalty = 1.18
                 )
-            
+
             case _:
-                raise ValueError(f"Unsupported prompt type: {prompt_type}")
+                raise InvalidPromptTypeError(f"Unsupported prompt type: {prompt_type}")
