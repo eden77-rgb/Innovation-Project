@@ -95,7 +95,10 @@ for token in service.stream(PromptType.TRANSLATE, prompt):
 
 from fastapi import FastAPI
 from interfaces import router
+from interfaces import register_exception_handler
 
 app = FastAPI()
+
+register_exception_handler(app=app)
 
 app.include_router(router, prefix="/api")

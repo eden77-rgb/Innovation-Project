@@ -37,7 +37,10 @@ class LLMService:
 
         options = self.options_policy.build_options(prompt_type)
 
-        yield from self.ollama_client.stream(
-            prompt = prompt, 
-            options = options.to_dict()
-        )
+        def generator():
+            yield from self.ollama_client.stream(
+                prompt=prompt,
+                options=options.to_dict()
+            )
+
+        return generator()

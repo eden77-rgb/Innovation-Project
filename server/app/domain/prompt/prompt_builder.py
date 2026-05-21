@@ -1,5 +1,5 @@
 from .prompt_types import PromptType
-from exceptions import EmptyPromptError, InvalidPromptTypeError, PromptTemplateNotFoundError
+from ..exceptions import EmptyPromptError, InvalidPromptTypeError, PromptTemplateNotFoundError
 from pathlib import Path
 
 
@@ -17,6 +17,7 @@ class PromptBuilder:
     @staticmethod
     def build(type: PromptType, text: str) -> str:
         if not isinstance(text, str) or not text.strip():
+            print("[ERROR]: EmptyPromptError")
             raise EmptyPromptError("Prompt text cannot be empty")
 
         if type not in PromptBuilder.PROMPTS:
