@@ -415,3 +415,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Visual Studio
+.vs/
+
+# Documentation locale
+docs/
+
+
