@@ -12,7 +12,8 @@ class PromptBuilder:
         PromptType.SUMMARY: "summary.txt",
         PromptType.TRANSLATE: "translate.txt",
         PromptType.REWRITE: "rewrite.txt",
-        PromptType.RESPONSE: "response.txt"
+        PromptType.RESPONSE: "response.txt",
+        PromptType.CUSTOM: "custom.txt"
     }
 
     @staticmethod

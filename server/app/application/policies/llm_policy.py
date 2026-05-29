@@ -29,13 +29,24 @@ class LLMPolicy:
                     num_predict = 800,
                     repeat_penalty = 1.18
                 )
-            
+
             case PromptType.RESPONSE:
                 return OllamaOptions(
                     temperature = 0.5,
                     top_p = 0.9,
                     num_predict = 800,
                     repeat_penalty = 1.1
+                )
+
+            case PromptType.CUSTOM:
+                return OllamaOptions(
+                    temperature = 0.5,
+                    top_p = 0.92,
+                    num_predict = 1200,
+                    repeat_penalty = 1.12,
+                    top_k = 50,
+                    presence_penalty = 0.1,
+                    frequency_penalty = 0.1
                 )
 
             case _:

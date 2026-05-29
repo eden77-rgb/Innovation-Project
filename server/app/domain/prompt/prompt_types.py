@@ -6,3 +6,4 @@ class PromptType(Enum):
     TRANSLATE = "translate"
     REWRITE = "rewrite"
     RESPONSE = "response"
+    CUSTOM = "custom"
