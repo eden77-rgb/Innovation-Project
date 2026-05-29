@@ -1,0 +1,66 @@
+<UserControl x:Class="innove.Views.ChatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel Grid.Row="0" Margin="0,0,0,10">
+            <Button x:Name="BackButton"
+                    Content="← Retour"
+                    DockPanel.Dock="Left"
+                    Width="90"
+                    Height="30"
+                    Click="BackButton_Click"/>
+            <TextBlock x:Name="ModeLabel"
+                       VerticalAlignment="Center"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Margin="15,0,0,0"/>
+        </DockPanel>
+
+        <!-- Message history -->
+        <Border Grid.Row="1" BorderBrush="#CCCCCC" BorderThickness="1" Margin="0,0,0,10">
+            <ScrollViewer x:Name="HistoryScroll" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="MessagesPanel" Margin="10"/>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Loading indicator -->
+        <StackPanel x:Name="LoadingPanel"
+                    Grid.Row="2"
+                    Visibility="Collapsed"
+                    Margin="0,0,0,8">
+            <TextBlock Text="En attente de la réponse..."
+                       FontStyle="Italic"
+                       Foreground="#888888"
+                       Margin="0,0,0,4"/>
+            <ProgressBar IsIndeterminate="True" Height="4"/>
+        </StackPanel>
+
+        <!-- Input area -->
+        <DockPanel Grid.Row="3">
+            <Button x:Name="SendButton"
+                    Content="Envoyer"
+                    DockPanel.Dock="Right"
+                    Width="100"
+                    Height="35"
+                    Margin="5,0,0,0"
+                    Click="SendButton_Click"/>
+            <ToggleButton x:Name="StreamToggle"
+                          Content="Stream"
+                          DockPanel.Dock="Right"
+                          Width="70"
+                          Height="35"
+                          Margin="5,0,0,0"/>
+            <TextBox x:Name="InputTextBox"
+                     Height="35"
+                     VerticalContentAlignment="Center"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

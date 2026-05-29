@@ -1,49 +1,6 @@
 <Window x:Class="innove.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
         Title="Innove — Assistant IA" Height="520" Width="700">
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Type :" VerticalAlignment="Center"/>
-            <ComboBox x:Name="PromptTypeComboBox" Width="150" SelectedIndex="0">
-                <ComboBoxItem Content="translate"/>
-                <ComboBoxItem Content="summary"/>
-                <ComboBoxItem Content="rewrite"/>
-            </ComboBox>
-        </StackPanel>
-
-        <TextBox x:Name="InputTextBox"
-                 Grid.Row="1"
-                 AcceptsReturn="True"
-                 TextWrapping="Wrap"
-                 VerticalScrollBarVisibility="Auto"
-                 Margin="0,0,0,10"/>
-
-        <Button x:Name="SendButton"
-                Grid.Row="2"
-                Content="Envoyer"
-                Width="120"
-                Height="35"
-                HorizontalAlignment="Center"
-                Margin="0,0,0,10"
-                Click="SendButton_Click"/>
-
-        <TextBox x:Name="ResponseTextBox"
-                 Grid.Row="3"
-                 IsReadOnly="True"
-                 AcceptsReturn="True"
-                 TextWrapping="Wrap"
-                 VerticalScrollBarVisibility="Auto"
-                 Background="#F0F0F0"/>
-    </Grid>
+    <ContentControl x:Name="MainContent"/>
 </Window>
