@@ -11,7 +11,8 @@ class PromptBuilder:
     PROMPTS = {
         PromptType.SUMMARY: "summary.txt",
         PromptType.TRANSLATE: "translate.txt",
-        PromptType.REWRITE: "rewrite.txt"
+        PromptType.REWRITE: "rewrite.txt",
+        PromptType.RESPONSE: "response.txt"
     }
 
     @staticmethod

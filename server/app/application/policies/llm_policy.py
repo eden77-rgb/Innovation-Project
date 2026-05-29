@@ -29,6 +29,14 @@ class LLMPolicy:
                     num_predict = 800,
                     repeat_penalty = 1.18
                 )
+            
+            case PromptType.RESPONSE:
+                return OllamaOptions(
+                    temperature = 0.5,
+                    top_p = 0.9,
+                    num_predict = 800,
+                    repeat_penalty = 1.1
+                )
 
             case _:
                 raise InvalidPromptTypeError(f"Unsupported prompt type: {prompt_type}")
