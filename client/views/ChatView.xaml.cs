@@ -1,5 +1,5 @@
 using innove.Models;
-using innove.Services;
+using innove.services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,24 +9,23 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Web.Script.Serialization;
+using System.Text.Json;
 
 namespace innove.Views
 {
     public partial class ChatView : UserControl
     {
-        public event EventHandler BackRequested;
+        public event EventHandler? BackRequested;
 
         private static readonly HttpClient _httpClient = new HttpClient { Timeout = System.Threading.Timeout.InfiniteTimeSpan };
         private const string ApiBaseUrl = "http://localhost:8000/api";
-        private readonly JavaScriptSerializer _serializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
 
         private readonly string _promptType;
-        private readonly string _customInstruction;
+        private readonly string? _customInstruction;
         private readonly Conversation _conversation;
         private readonly List<Conversation> _allConversations;
 
-        public ChatView(string promptType, string customInstruction = null)
+        public ChatView(string promptType, string? customInstruction = null)
         {
             InitializeComponent();
             _promptType = promptType;
@@ -37,7 +36,7 @@ namespace innove.Views
             {
                 Id = Guid.NewGuid().ToString(),
                 PromptType = promptType,
-                CustomInstruction = customInstruction,
+                CustomInstruction = customInstruction ?? string.Empty,
                 CreatedAt = DateTime.Now,
                 Messages = new List<ChatMessage>()
             };
@@ -123,7 +122,7 @@ namespace innove.Views
                 ? _customInstruction + "\n\n---\n\n" + inputText
                 : inputText;
 
-            string json = _serializer.Serialize(new Dictionary<string, string>
+            string json = JsonSerializer.Serialize(new Dictionary<string, string>
             {
                 { "prompt_type", _promptType },
                 { "content", content }
@@ -131,7 +130,7 @@ namespace innove.Views
 
             try
             {
-                string reply = StreamToggle.IsChecked == true
+                string? reply = StreamToggle.IsChecked == true
                     ? await SendStreamRequest(json)
                     : await SendGenerateRequest(json);
 
@@ -162,7 +161,7 @@ namespace innove.Views
             }
         }
 
-        private async Task<string> SendGenerateRequest(string json)
+        private async Task<string?> SendGenerateRequest(string json)
         {
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             using (HttpResponseMessage response = await _httpClient.PostAsync(ApiBaseUrl + "/generate", httpContent))
@@ -174,8 +173,8 @@ namespace innove.Views
                 }
 
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var result = _serializer.Deserialize<Dictionary<string, string>>(responseBody);
-                string reply = StripQuotes(result.ContainsKey("data") && result["data"] != null
+                var result = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                string reply = StripQuotes(result != null && result.ContainsKey("data") && result["data"] != null
                     ? result["data"]
                     : "Réponse inattendue du serveur.");
 
@@ -184,7 +183,7 @@ namespace innove.Views
             }
         }
 
-        private async Task<string> SendStreamRequest(string json)
+        private async Task<string?> SendStreamRequest(string json)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, ApiBaseUrl + "/stream");
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -220,7 +219,7 @@ namespace innove.Views
             }
         }
 
-        private TextBlock AppendAiMessage(string text = null)
+        private TextBlock AppendAiMessage(string? text = null)
         {
             const string prefix = "IA : ";
 

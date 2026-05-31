@@ -2,17 +2,15 @@ using innove.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web.Script.Serialization;
+using System.Text.Json;
 
-namespace innove.Services
+namespace innove.services
 {
     public static class HistoryService
     {
         private static readonly string HistoryPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             "Innove", "history.json");
-
-        private static readonly JavaScriptSerializer Serializer = new JavaScriptSerializer();
 
         public static List<Conversation> Load()
         {
@@ -21,7 +19,7 @@ namespace innove.Services
                 if (!File.Exists(HistoryPath))
                     return new List<Conversation>();
                 string json = File.ReadAllText(HistoryPath);
-                return Serializer.Deserialize<List<Conversation>>(json) ?? new List<Conversation>();
+                return JsonSerializer.Deserialize<List<Conversation>>(json) ?? new List<Conversation>();
             }
             catch
             {
@@ -33,8 +31,10 @@ namespace innove.Services
         {
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(HistoryPath));
-                File.WriteAllText(HistoryPath, Serializer.Serialize(conversations));
+                if (HistoryPath != null) {
+                    Directory.CreateDirectory(HistoryPath);
+                    File.WriteAllText(HistoryPath, JsonSerializer.Serialize(conversations));
+                }
             }
             catch { }
         }
