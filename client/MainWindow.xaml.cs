@@ -62,7 +62,7 @@ namespace client
         {
             if (msg == WM_HOTKEY && wParam.ToInt32() == HOTKEY_ID)
             {
-                OpenCloseApp();
+                OpenClosedApp();
                 handled = true; // event gérer
             }
             return IntPtr.Zero;
