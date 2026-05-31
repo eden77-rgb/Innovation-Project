@@ -7,9 +7,9 @@ namespace innove.Views
     public class PromptSelectedArgs : EventArgs
     {
         public string PromptType { get; }
-        public string CustomInstruction { get; }
+        public string? CustomInstruction { get; }
 
-        public PromptSelectedArgs(string promptType, string customInstruction = null)
+        public PromptSelectedArgs(string promptType, string? customInstruction = null)
         {
             PromptType = promptType;
             CustomInstruction = customInstruction;
@@ -18,7 +18,7 @@ namespace innove.Views
 
     public partial class HomeView : UserControl
     {
-        public event EventHandler<PromptSelectedArgs> PromptSelected;
+        public event EventHandler<PromptSelectedArgs>? PromptSelected;
 
         public HomeView()
         {

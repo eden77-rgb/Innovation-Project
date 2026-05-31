@@ -1,4 +1,4 @@
-using innove.Views;
+﻿using innove.Views;
 using System.Windows;
 
 namespace innove
@@ -18,7 +18,7 @@ namespace innove
             MainContent.Content = home;
         }
 
-        private void OnPromptSelected(object sender, PromptSelectedArgs e)
+        private void OnPromptSelected(object? sender, PromptSelectedArgs e)
         {
             var chat = new ChatView(e.PromptType, e.CustomInstruction);
             chat.BackRequested += (s, _) => ShowHome();

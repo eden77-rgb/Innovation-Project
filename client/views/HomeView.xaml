@@ -10,7 +10,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
-                   Text="Innove — Assistant IA"
+                   Text="G.E.R.A.R.D"
                    FontSize="22"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
