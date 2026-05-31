@@ -44,6 +44,7 @@ namespace client.services
                     File.WriteAllText(HistoryPath, json);
                 }
             }
+            catch { }
         }
     }
 }
