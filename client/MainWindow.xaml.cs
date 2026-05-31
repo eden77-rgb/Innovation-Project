@@ -1,7 +1,9 @@
-﻿using innove.Views;
+﻿using client.views;
+using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 
-namespace innove
+namespace client
 {
     public partial class MainWindow : Window
     {
