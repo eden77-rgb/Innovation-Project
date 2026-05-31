@@ -1,16 +1,16 @@
-using innove.Models;
+using client.models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace innove.services
+namespace client.services
 {
     public static class HistoryService
     {
         private static readonly string HistoryPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "Innove", "history.json");
+            "G.E.R.A.R.D", "history.json");
 
         public static List<Conversation> Load()
         {
@@ -31,9 +31,17 @@ namespace innove.services
         {
             try
             {
-                if (HistoryPath != null) {
-                    Directory.CreateDirectory(HistoryPath);
-                    File.WriteAllText(HistoryPath, JsonSerializer.Serialize(conversations));
+                if (HistoryPath != null) 
+                {
+                    string? directoryPath = Path.GetDirectoryName(HistoryPath);
+                    
+                    if (directoryPath != null)
+                    {
+                        Directory.CreateDirectory(directoryPath);
+                    }
+
+                    string json = JsonSerializer.Serialize(conversations);
+                    File.WriteAllText(HistoryPath, json);
                 }
             }
             catch { }
