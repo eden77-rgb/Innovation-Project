@@ -1,6 +1,6 @@
 using System;
 
-namespace innove.Models
+namespace client.models
 {
     public class ChatMessage
     {

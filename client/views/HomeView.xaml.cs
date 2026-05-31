@@ -2,7 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace innove.Views
+namespace client.views
 {
     public class PromptSelectedArgs : EventArgs
     {
@@ -42,7 +42,7 @@ namespace innove.Views
             string custom = CustomPromptTextBox.Text.Trim();
             if (string.IsNullOrEmpty(custom))
             {
-                MessageBox.Show("Veuillez entrer un prompt personnalisé.", "Innove");
+                MessageBox.Show("Veuillez entrer un prompt personnalisé.", "G.E.R.A.R.D");
                 return;
             }
             PromptSelected?.Invoke(this, new PromptSelectedArgs("custom", custom));

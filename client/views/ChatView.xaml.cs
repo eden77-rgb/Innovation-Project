@@ -1,5 +1,5 @@
-using innove.Models;
-using innove.services;
+using client.models;
+using client.services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Text.Json;
 
-namespace innove.Views
+namespace client.views
 {
     public partial class ChatView : UserControl
     {

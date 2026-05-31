@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace innove.Models
+namespace client.models
 {
     public class Conversation
     {
